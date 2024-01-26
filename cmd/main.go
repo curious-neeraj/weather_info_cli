@@ -9,6 +9,11 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// type ApiError struct {
+// 	code    int
+// 	message string
+// }
+
 // use godotenv package to load .env file and return value of key
 func goDotEnvVariable(key string) string {
 
@@ -21,14 +26,28 @@ func goDotEnvVariable(key string) string {
 	return os.Getenv(key)
 }
 
+// handle the error encountered while making the API Call
+func handleApiError(err string) {
+	log.Println(err)
+}
+
 func main() {
-	fmt.Println("So we're building a basic weather info cli tool using Golang. Let's GO!!")
 
 	// load apiKey value and set location
 	apiKey := goDotEnvVariable("API_KEY")
 	location := "Raipur"
 
 	// try to call the api (with apikey) and get response data
-	body, _ := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + location + "&days=1&key=" + apiKey)
-	fmt.Println(body.Status)
+	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + location + "&days=1&key=" + apiKey)
+	if err != nil {
+		log.Println(err.Error())
+	}
+
+	fmt.Println(res)
+
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		handleApiError(res.Status)
+	}
+
 }
