@@ -1,12 +1,14 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
 
+	models "github.com/curious-neeraj/weather_info_cli/models"
 	"github.com/joho/godotenv"
 )
 
@@ -36,10 +38,10 @@ func main() {
 
 	// load apiKey value and set location
 	apiKey := goDotEnvVariable("API_KEY")
-	location := "Raipur"
+	home := "Raipur"
 
 	// try to call the api (with apikey) and get response data
-	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + location + "&days=1&key=" + apiKey)
+	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + home + "&days=1&key=" + apiKey)
 	if err != nil {
 		handleError(res.Status)
 	}
@@ -56,5 +58,20 @@ func main() {
 		fmt.Println(err)
 	}
 
-	fmt.Print(string(body))
+	// fmt.Print(string(body))
+
+	var weather models.Weather
+	err = json.Unmarshal(body, &weather)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	location, current, _ := weather.Location, weather.Current, weather.Forecast
+
+	fmt.Printf("%v, %v, %.2f C, %v, %v%% Humidity \n",
+		location.Name,
+		location.Country,
+		current.Temperature,
+		current.Condition.Text,
+		current.Humidity)
 }
