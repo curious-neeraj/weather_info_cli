@@ -33,8 +33,8 @@ type Weather struct {
 				Condition struct {
 					Text string `json:"text"`
 				} `json:"condition"`
-				Humidity   float64 `json:"humidity"`
-				ChanceRain float64 `json:"chance_of_rain"`
+				Humidity     float64 `json:"humidity"`
+				ChanceOfRain float64 `json:"chance_of_rain"`
 			} `json:"hour"`
 		} `json:"forecastday"`
 	} `json:"forecast"`

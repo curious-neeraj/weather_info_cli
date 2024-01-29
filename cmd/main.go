@@ -7,8 +7,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
+	"time"
 
 	models "github.com/curious-neeraj/weather_info_cli/models"
+	"github.com/fatih/color"
 	"github.com/joho/godotenv"
 )
 
@@ -66,12 +69,41 @@ func main() {
 		fmt.Println(err)
 	}
 
-	location, current, _ := weather.Location, weather.Current, weather.Forecast
+	location, current, forecast := weather.Location, weather.Current, weather.Forecast
 
-	fmt.Printf("%v, %v, %.2f C, %v, %v%% Humidity \n",
+	fmt.Printf("%v, %v, %.1f° C, %v, %v%% Humidity\n",
 		location.Name,
 		location.Country,
 		current.Temperature,
-		current.Condition.Text,
+		strings.Trim(current.Condition.Text, " "),
 		current.Humidity)
+
+	for _, hour := range forecast.ForecastDay[0].Hour {
+		date := time.Unix(hour.TimeEpoch, 0)
+
+		if date.Before(time.Now()) {
+			continue
+		}
+
+		output := fmt.Sprintf(
+			"%v, %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain",
+			date,
+			hour.Temp,
+			strings.Trim(hour.Condition.Text, " "),
+			hour.Humidity,
+			hour.ChanceOfRain)
+
+		red := color.New(color.FgRed, color.Bold)
+		d := red.Add(color.BgWhite)
+		// d := color.New(color.FgCyan, color.Bold)
+		// d.Printf("This prints bold cyan %s\n", "too!.")
+		if hour.ChanceOfRain < 30 {
+			d.Println(output)
+		} else if hour.ChanceOfRain < 60 {
+			color.White(output)
+		} else {
+			color.Blue(output)
+		}
+
+	}
 }
