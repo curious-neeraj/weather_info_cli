@@ -87,22 +87,16 @@ func main() {
 
 		output := fmt.Sprintf(
 			"%v, %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain",
-			date,
+			date.Format("15:04"),
 			hour.Temp,
 			strings.Trim(hour.Condition.Text, " "),
 			hour.Humidity,
 			hour.ChanceOfRain)
 
-		red := color.New(color.FgRed, color.Bold)
-		d := red.Add(color.BgWhite)
-		// d := color.New(color.FgCyan, color.Bold)
-		// d.Printf("This prints bold cyan %s\n", "too!.")
-		if hour.ChanceOfRain < 30 {
-			d.Println(output)
-		} else if hour.ChanceOfRain < 60 {
-			color.White(output)
+		if hour.ChanceOfRain > 60 {
+			color.Cyan(output)
 		} else {
-			color.Blue(output)
+			fmt.Println(output)
 		}
 
 	}
