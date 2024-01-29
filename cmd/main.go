@@ -15,11 +15,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// type ApiError struct {
-// 	code    int
-// 	message string
-// }
-
 // use godotenv package to load .env file and return value of key
 func goDotEnvVariable(key string) string {
 
@@ -71,12 +66,16 @@ func main() {
 
 	location, current, forecast := weather.Location, weather.Current, weather.Forecast
 
-	fmt.Printf("%v, %v, %.1f° C, %v, %v%% Humidity\n",
+	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v, %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain\n\n",
 		location.Name,
 		location.Country,
+		time.Now().Format("15:04"),
 		current.Temperature,
 		strings.Trim(current.Condition.Text, " "),
-		current.Humidity)
+		current.Humidity,
+		current.ChanceOfRain)
+
+	color.White(headline)
 
 	for _, hour := range forecast.ForecastDay[0].Hour {
 		date := time.Unix(hour.TimeEpoch, 0)
@@ -93,11 +92,13 @@ func main() {
 			hour.Humidity,
 			hour.ChanceOfRain)
 
-		if hour.ChanceOfRain > 60 {
+		// color coding based on temperature
+		// Temp >= 25, Color = Yellow
+		// Temp  < 25, Color = Cyan
+		if hour.Temp < 25 {
 			color.Cyan(output)
 		} else {
-			fmt.Println(output)
+			color.Yellow(output)
 		}
-
 	}
 }
