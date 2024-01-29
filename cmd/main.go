@@ -27,27 +27,29 @@ func goDotEnvVariable(key string) string {
 	return os.Getenv(key)
 }
 
-// handle the error encountered while making the API Call
-func handleError(err string) {
-	log.Println(err)
-}
-
 func main() {
 
 	// load apiKey value and set location
 	apiKey := goDotEnvVariable("API_KEY")
 	home := "Raipur"
 
+	numArgs := len(os.Args)
+	if numArgs == 2 {
+		home = os.Args[1]
+	} else if numArgs > 2 {
+		panic("Illegal Use! At max one argument (city name) excepted.")
+	}
+
 	// try to call the api (with apikey) and get response data
 	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + home + "&days=1&key=" + apiKey)
 	if err != nil {
-		handleError(res.Status)
+		panic(err)
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
-		handleError(res.Status)
+		panic("Weather API not available")
 	}
 
 	// read API call response body
@@ -55,8 +57,6 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	// fmt.Print(string(body))
 
 	var weather models.Weather
 	err = json.Unmarshal(body, &weather)
@@ -66,7 +66,7 @@ func main() {
 
 	location, current, forecast := weather.Location, weather.Current, weather.Forecast
 
-	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v, %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain\n\n",
+	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v - %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain\n\n",
 		location.Name,
 		location.Country,
 		time.Now().Format("15:04"),
@@ -76,6 +76,7 @@ func main() {
 		current.ChanceOfRain)
 
 	color.White(headline)
+	fmt.Printf("Weather Forecast - \n")
 
 	for _, hour := range forecast.ForecastDay[0].Hour {
 		date := time.Unix(hour.TimeEpoch, 0)
@@ -85,7 +86,7 @@ func main() {
 		}
 
 		output := fmt.Sprintf(
-			"%v, %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain",
+			"%v - %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain",
 			date.Format("15:04"),
 			hour.Temp,
 			strings.Trim(hour.Condition.Text, " "),
@@ -100,5 +101,6 @@ func main() {
 		} else {
 			color.Yellow(output)
 		}
+		time.Sleep(time.Duration(500) * time.Millisecond)
 	}
 }
