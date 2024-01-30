@@ -1,4 +1,4 @@
-# CLI Tool for getting Weather Info
+# CLI Command for getting Weather Info
 It's not a bad idea to get an idea about the weather forecast for any day as it helps us to plan our coffee breaks according to the nature's mood outside!
 
 Expectations :
