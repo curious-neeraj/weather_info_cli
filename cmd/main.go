@@ -101,6 +101,6 @@ func main() {
 		} else {
 			color.Yellow(output)
 		}
-		time.Sleep(time.Duration(500) * time.Millisecond)
+		time.Sleep(time.Duration(150) * time.Millisecond)
 	}
 }
