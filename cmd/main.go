@@ -36,8 +36,10 @@ func main() {
 	numArgs := len(os.Args)
 	if numArgs == 2 {
 		home = os.Args[1]
+	} else if numArgs == 3 {
+		home = os.Args[1] + "%20" + os.Args[2]
 	} else if numArgs > 2 {
-		panic("Illegal Use! At max one argument (city name) excepted.")
+		log.Fatalf("Illegal Use! Kindly enter a valid city name.")
 	}
 
 	// try to call the api (with apikey) and get response data
@@ -49,31 +51,38 @@ func main() {
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
-		panic("Weather API not available")
+		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		var apiError models.ApiError
+		_ = json.Unmarshal(body, &apiError)
+		log.Fatalln(apiError.Error.Message)
 	}
 
 	// read API call response body
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln(err)
 	}
 
 	var weather models.Weather
 	err = json.Unmarshal(body, &weather)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln(err)
 	}
 
 	location, current, forecast := weather.Location, weather.Current, weather.Forecast
 
-	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v - %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain\n\n",
+	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v  -  %4.1f° C, %3v%% Humidity, %3v%% Chance of Rain, %v\n\n",
 		location.Name,
 		location.Country,
 		time.Now().Format("15:04"),
 		current.Temperature,
-		strings.Trim(current.Condition.Text, " "),
 		current.Humidity,
-		current.ChanceOfRain)
+		current.ChanceOfRain,
+		strings.Trim(current.Condition.Text, " "))
 
 	color.White(headline)
 	fmt.Printf("Weather Forecast - \n")
@@ -86,12 +95,12 @@ func main() {
 		}
 
 		output := fmt.Sprintf(
-			"%v - %.1f° C, %v, %v%% Humidity, %v%% Chance of Rain",
+			"%v  -  %4.1f° C, %3v%% Humidity, %3v%% Chance of Rain, %v",
 			date.Format("15:04"),
 			hour.Temp,
-			strings.Trim(hour.Condition.Text, " "),
 			hour.Humidity,
-			hour.ChanceOfRain)
+			hour.ChanceOfRain,
+			strings.Trim(hour.Condition.Text, " "))
 
 		// color coding based on temperature
 		// Temp >= 25, Color = Yellow
