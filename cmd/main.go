@@ -75,9 +75,8 @@ func main() {
 
 	location, current, forecast := weather.Location, weather.Current, weather.Forecast
 
-	headline := fmt.Sprintf("\nCurrent Weather at %v, %v:\n%v  -  %4.1f° C, %3v%% Humidity, %3v%% Chance of Rain, %v\n\n",
-		location.Name,
-		location.Country,
+	color.Green("\nWeather Update (%v, %v)\n", location.Name, location.Country)
+	headline := fmt.Sprintf("%v  -  %4.1f° C, %3v%% Humidity, %3v%% Chance of Rain, %v\n\n",
 		time.Now().Format("15:04"),
 		current.Temperature,
 		current.Humidity,
@@ -85,7 +84,6 @@ func main() {
 		strings.Trim(current.Condition.Text, " "))
 
 	color.White(headline)
-	fmt.Printf("Weather Forecast - \n")
 
 	for _, hour := range forecast.ForecastDay[0].Hour {
 		date := time.Unix(hour.TimeEpoch, 0)
