@@ -10,6 +10,5 @@ Expectations :
 
 Go to Have Add-Ons :
 
-- [ ] Better Error Handling
-- [ ] Extensive Logging
-- [ ] Add Unit Tests (would be fun to add them here!)
+- [x] Better Error Handling and Logging
+- [ ] Add Unit Tests (umm, someday, maybe!)
