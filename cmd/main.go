@@ -84,7 +84,7 @@ func main() {
 		current.ChanceOfRain,
 		strings.Trim(current.Condition.Text, " "))
 
-	color.White(headline)
+	fmt.Print(headline)
 
 	for _, hour := range forecast.ForecastDay[0].Hour {
 		date := time.Unix(hour.TimeEpoch, 0)
