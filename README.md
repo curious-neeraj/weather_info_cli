@@ -1,5 +1,10 @@
-# CLI Command for getting Weather Info
-It's not a bad idea to get an idea about the weather forecast for any day as it helps us to plan our coffee breaks according to the nature's mood outside!
+# Weather Info and Forecast
+
+![Project Logo - Weather CLI Command](/images/logo.jpeg)
+
+It's always helpful to know weather forecast for the day as it allows us to plan our coffee breaks according to the nature's mood outside!
+
+This project basically does excatly that by letting the users know the weather forecast of an location on their terminal.
 
 Expectations :
 
