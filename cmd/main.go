@@ -19,7 +19,8 @@ import (
 func goDotEnvVariable(key string) string {
 
 	// load .env file
-	err := godotenv.Load(".env")
+	// use full path in order to make the resultant command/tool usable from any file path
+	err := godotenv.Load("/Users/neeraj/Desktop/Personal/Projects/weather_info_cli/.env")
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
