@@ -18,6 +18,11 @@ This project basically does excatly that by letting the users know the weather f
 - [x] Better Error Handling and Logging
 - [ ] Add Unit Tests (umm, someday, maybe!)
 
+## Set Up
+
+- If you're looking to just use the tool, simply place the executable file named (`weather`) in the `usr/local/bin` folder to make it available as a terminal command. 
+
+
 ## Result
 
 ```
