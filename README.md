@@ -18,9 +18,28 @@ This project basically does excatly that by letting the users know the weather f
 - [x] Better Error Handling and Logging
 - [ ] Add Unit Tests (umm, someday, maybe!)
 
-## Set Up
+## Project Structure
+```
+.
+├── LICENSE
+├── README.md
+├── cmd
+│   └── main.go
+├── go.mod
+├── go.sum
+├── images
+│   ├── logo.jpeg
+│   ├── screenshot-1.png
+│   └── screenshot-2.png
+├── models
+│   ├── api_error.go
+│   └── weather.go
+└── weather
+```
 
-- If you're looking to just use the tool, simply place the executable file named (`weather`) in the `usr/local/bin` folder to make it available as a terminal command. 
+## Instructions
+
+> If you're looking to just use the tool, simply place the executable file named (`weather`) in the `usr/local/bin` folder to make it available as a terminal command. 
 
 
 ## Result
