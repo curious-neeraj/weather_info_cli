@@ -30,19 +30,25 @@ This project basically does excatly that by letting the users know the weather f
 ├── images
 │   ├── logo.jpeg
 │   ├── screenshot-1.png
-│   └── screenshot-2.png
+│   ├── screenshot-2.png
+│   └── screenshot-3.png
 ├── models
 │   ├── api_error.go
 │   └── weather.go
 └── weather
 ```
 
-## Instructions
+## Usage Instructions
 
-> If you're looking to just use the tool, simply place the executable file named (`weather`) in the `usr/local/bin` folder to make it available as a terminal command. 
+> If you're looking to just use the tool, simply place the executable file { `weather` } in the `usr/local/bin` folder to make it available as a terminal command. 
 
+Currently, the default location points to **Raipur, India**.
 
-## Result
+- In case you'd like to get weather info about any other city, pass the city name as an argument to the executable : `weather <city>`
+
+- Also, if the city name is common, you can pass the state/country name to pin-point the intentional location : `weather <city> <country>`
+
+## Resultant Examples
 
 ```
 $ weather
@@ -53,3 +59,8 @@ $ weather
 $ weather barcelona
 ```
 ![Weather Info - Barcelona](/images/screenshot-2.png)
+
+```
+$ weather delhi india 
+```
+![Weather Info - Delhi, India](/images/screenshot-3.png)
