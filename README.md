@@ -1,6 +1,6 @@
 # Weather Info and Forecast
 
-![Project Logo - Weather CLI Command](/images/logo.jpeg)
+<img src="/images/logo.jpeg" width="100" height="100">
 
 It's always helpful to know weather forecast for the day as it allows us to plan our coffee breaks according to the nature's mood outside!
 
@@ -53,6 +53,15 @@ If you're looking to use the tool, you'd need to do the following -
 5. Place the executable file { `weather` } in `usr/local/bin`, using the command `cp weather usr/local/bin`
 
 > Congratulations! Now you can use the command `weather` from any location to get the weather information and forecast.
+
+## Command Usage
+
+- Use the command to get the weather info of the default location (home): `weather`
+
+- In case you'd like to get weather info about any other city, pass the city name as an argument to the executable : `weather <city>`
+
+- Also, if the city name is common, you can pass the state/country name to pin-point the intentional location : `weather <city> <state/country>`
+
 
 ## Resultant Examples
 
