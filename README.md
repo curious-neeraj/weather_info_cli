@@ -46,7 +46,7 @@ Currently, the default location points to **Raipur, India**.
 
 - In case you'd like to get weather info about any other city, pass the city name as an argument to the executable : `weather <city>`
 
-- Also, if the city name is common, you can pass the state/country name to pin-point the intentional location : `weather <city> <country>`
+- Also, if the city name is common, you can pass the state/country name to pin-point the intentional location : `weather <city> <state/country>`
 
 ## Resultant Examples
 
