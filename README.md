@@ -1,6 +1,6 @@
 <b><h1 align="center">Weather Info and Forecast</h1></b><br>
 <p align="center" width="100%">
-<img alt="Weather Info Logo" src="/images/logo.jpeg" width="250" height="250">
+<img alt="Weather Info Logo" src="/images/logo.jpeg" width="350" height="350">
 </p>
 
 It's always helpful to know weather forecast for the day as it allows us to plan our coffee breaks according to the nature's mood outside!
