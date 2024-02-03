@@ -1,6 +1,5 @@
-# Weather Info and Forecast
-
 <p align="center" width="100%">
+<b>Weather Info and Forecast</b><br>
 <img alt="Weather Info Logo" src="/images/logo.jpeg" width="250" height="250">
 </p>
 
