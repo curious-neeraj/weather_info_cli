@@ -3,9 +3,12 @@
 <img alt="Weather Info Logo" src="/images/logo.jpeg" width="350" height="350">
 </p>
 
+<p align="center">
 It's always helpful to know weather forecast for the day as it allows us to plan our coffee breaks according to the nature's mood outside!
-
+</p>
+<p align="center">
 This project basically does excatly that by letting the users know the weather forecast of an location on their terminal.
+</p>
 
 ## Expectations :
 
