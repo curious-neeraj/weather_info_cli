@@ -1,6 +1,8 @@
 # Weather Info and Forecast
 
-<img src="/images/logo.jpeg" width="250" height="250">
+<p align="center" width="100%">
+<img alt="Weather Info Logo" src="/images/logo.jpeg" width="250" height="250">
+</p>
 
 It's always helpful to know weather forecast for the day as it allows us to plan our coffee breaks according to the nature's mood outside!
 
