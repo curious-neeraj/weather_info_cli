@@ -1,5 +1,5 @@
-<p align="center" width="100%">
 <b><h1 align="center">Weather Info and Forecast</h1></b><br>
+<p align="center" width="100%">
 <img alt="Weather Info Logo" src="/images/logo.jpeg" width="250" height="250">
 </p>
 
