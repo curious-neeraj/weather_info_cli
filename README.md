@@ -17,7 +17,7 @@ This project basically does excatly that by letting the users know the weather f
 - [x] ~~Organize data as per liking to get necessary info displayed when called~~
 - [x] ~~Beautify the result a bit (optional)~~
 
-## Go to Have Add-Ons :
+## Good to Have Add-Ons :
 
 - [x] Better Error Handling and Logging
 - [ ] Add Unit Tests (umm, someday, maybe!)
