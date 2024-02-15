@@ -1,6 +1,6 @@
 <b><h1 align="center">Weather Info and Forecast</h1></b><br>
 <p align="center" width="100%">
-<img alt="Weather Info Logo" src="/images/logo.jpeg" width="350" height="350">
+<img alt="Weather Info Logo" src="/images/logo.jpeg" width="400" height="400">
 </p>
 
 <p align="center">
