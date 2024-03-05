@@ -110,6 +110,8 @@ func main() {
 		} else {
 			color.Yellow(output)
 		}
+		// we can have such coding based on other parameters as well, but that would become too colorfull :( 
+		
 		time.Sleep(time.Duration(150) * time.Millisecond)
 	}
 }
